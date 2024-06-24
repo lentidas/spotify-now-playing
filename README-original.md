@@ -1,8 +1,16 @@
-# Spotify Now Playing
+<div align="center">
+  <img src="assets/spotify.svg" width="100" align="center">
+  <h1>Spotify Readme</h1>
 
-A small widget that displays the currently playing song and top tracks on Spotify. The widget is designed to be used in GitHub profiles.
+  [![Badge](https://img.shields.io/github/issues/tthn0/Spotify-Readme?style=for-the-badge)](https://github.com/tthn0/Spotify-Readme/issues)
+  [![Badge](https://img.shields.io/github/forks/tthn0/Spotify-Readme?style=for-the-badge)](https://github.com/tthn0/Spotify-Readme/network)
+  [![Badge](https://img.shields.io/github/stars/tthn0/Spotify-Readme?style=for-the-badge)](https://github.com/tthn0/Spotify-Readme/stargazers)
 
-This is a fork of [ntthn0/Spotify-Readme](https://github.com/tthn0/Spotify-Readme). The original `README.md` is kept on [here](./README-original.md) on the side. A small copy of the original `README.md` is kept below (only the instructions and preview).
+</div>
+
+<p align="center">
+  A dynamic, customizable, and real-time Spotify now-playing widget for your README files that syncs with the song you’re currently playing. If you're not currently playing a song, it'll display one of your recent songs! Feel free to ask for help or make any PRs/issues/suggestions 😄
+</p>
 
 ## Previews
 
@@ -10,31 +18,31 @@ This is a fork of [ntthn0/Spotify-Readme](https://github.com/tthn0/Spotify-Readm
 ```
 /api
 ```
-![Preview](https://lentidas-now-playing.vercel.app/api)
+![Preview](https://tthn0.vercel.app/api)
 
 #### Spinning CD Effect
 ```
 /api?spin=true
 ```
-![Preview](https://lentidas-now-playing.vercel.app/api?spin=true)
+![Preview](https://tthn0.vercel.app/api?spin=true)
 
 #### Include Scan Code
 ```
 /api?scan=true
 ```
-![Preview](https://lentidas-now-playing.vercel.app/api?scan=true)
+![Preview](https://tthn0.vercel.app/api?scan=true)
 
 #### Rainbow Equalizer
 ```
 /api?rainbow=true
 ```
-![Preview](https://lentidas-now-playing.vercel.app/api?rainbow=true)
+![Preview](https://tthn0.vercel.app/api?rainbow=true)
 
 #### Dark Theme
 ```
 /api?theme=dark
 ```
-![Preview](https://lentidas-now-playing.vercel.app/api?theme=dark)
+![Preview](https://tthn0.vercel.app/api?theme=dark)
 
 ## Setup/Deployment
 
@@ -142,3 +150,7 @@ https://accounts.spotify.com/authorize?client_id={CLIENT_ID}&response_type=code&
 ## Keep Your Fork Up To Date
 
 You can keep your fork, and thus your private Vercel instance up to date with the upstream using GitHub's <a href="https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/syncing-a-fork">Sync Fork button</a>.
+
+## Note
+
+This wasn't a completely original idea. This was inspired by <a href="https://github.com/novatorem/novatorem">novatorem's project</a> that was supposed to be for me only. Since others have asked for the source code, I decided to make this a public repo. I also incorporated the latest two PR's from the orignal project into this one and made it easy to customize!
