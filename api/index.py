@@ -96,7 +96,7 @@ def get_scan_code(spotify_uri):
 def make_svg(spin, scan, theme, rainbow):
     """Render the HTML template with variables"""
     data = spotify_request("me/player/currently-playing")
-    if data:
+    if data and data != "EMPTY_RESPONSE":
         item = data["item"]
     else:
         item = spotify_request(
