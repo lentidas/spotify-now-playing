@@ -2,7 +2,7 @@
 
 A small widget that displays the currently playing song and top tracks on Spotify. The widget is designed to be used in GitHub profiles.
 
-This is a fork of [ntthn0/Spotify-Readme](https://github.com/tthn0/Spotify-Readme). The original `README.md` is kept on [here](./README-original.md) on the side. A small copy of the original `README.md` is kept below (only the instructions and preview).
+This is a fork of [ntthn0/Spotify-Readme](https://github.com/tthn0/Spotify-Readme). The original `README.md` is kept [here](./README-original.md) on the side, but the instructions and previews are also below.
 
 ## Previews
 
