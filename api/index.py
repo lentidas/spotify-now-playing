@@ -82,8 +82,8 @@ def generate_bars(bar_count, rainbow):
 
 def load_image_base64(url):
     """Get the Base64 encoded image from url"""
-    resposne = requests.get(url)
-    return b64encode(resposne.content).decode("ascii")
+    response = requests.get(url)
+    return b64encode(response.content).decode("ascii")
 
 
 def get_scan_code(spotify_uri):
