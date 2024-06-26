@@ -40,7 +40,7 @@ def spotify_request(endpoint):
         f"https://api.spotify.com/v1/{endpoint}",
         headers={"Authorization": f"Bearer {get_token()}"},
     )
-    return {} if r == "EMPTY_RESPONSE" else r.json()
+    return {} if r.status_code == 204 else r.json()
 
 
 def generate_bars(bar_count, rainbow):
