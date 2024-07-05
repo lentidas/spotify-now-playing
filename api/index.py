@@ -3,7 +3,7 @@ from base64 import b64encode
 from dotenv import find_dotenv, load_dotenv
 from flask import Flask, Response, render_template, request, redirect
 from os import getenv
-from random import randrange
+from random import randrange, randint
 
 # Load environment variables
 load_dotenv(find_dotenv())
