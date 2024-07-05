@@ -3,7 +3,7 @@ from base64 import b64encode
 from dotenv import find_dotenv, load_dotenv
 from flask import Flask, Response, render_template, request, redirect
 from os import getenv
-from random import randint
+from random import randrange
 
 # Load environment variables
 load_dotenv(find_dotenv())
@@ -75,7 +75,8 @@ def generate_bars(bar_count, rainbow):
     for i in range(bar_count):
         css += f""".bar:nth-child({i + 1}) {{
                 animation-duration: {randint(500, 750)}ms;
-                background: {spectrum[i] if rainbow and rainbow != 'false' and rainbow != '0' else '#24D255'};
+                background: {spectrum[i] if rainbow and rainbow !=
+                             'false' and rainbow != '0' else '#24D255'};
             }}"""
     return f"{bars}{css}</style>"
 
@@ -89,18 +90,25 @@ def load_image_base64(url):
 def get_scan_code(spotify_uri):
     """Get the track code for a song"""
     return load_image_base64(
-        f"https://scannables.scdn.co/uri/plain/png/000000/white/640/{spotify_uri}"
+        f"https://scannables.scdn.co/uri/plain/png/000000/white/640/{
+            spotify_uri}"
     )
 
 
-def make_svg(spin, scan, theme, rainbow):
+def make_svg(spin, scan, theme, rainbow, top, random):
     """Render the HTML template with variables"""
+
+    n = randrange(10) if random and random != "false" and random != "0" else 0
     data = spotify_request("me/player/currently-playing")
+
     if data:
         item = data["item"]
+    elif top and top != "false" and top != "0":
+        data = spotify_request("me/top/tracks?limit=10&time_range=medium_term")
+        item = data["items"][n]
     else:
-        data = spotify_request("me/player/recently-played?limit=1")
-        item = data["items"][0]["track"]
+        data = spotify_request("me/player/recently-played?limit=10")
+        item = data["items"][n]["track"]
 
     if item["album"]["images"] == []:
         image = B64_PLACEHOLDER_IMAGE
@@ -144,11 +152,14 @@ def catch_all(path):
             request.args.get("scan"),
             request.args.get("theme"),
             request.args.get("rainbow"),
+            request.args.get("top"),
+            request.args.get("random"),
         ),
         mimetype="image/svg+xml",
     )
     resp.headers["Cache-Control"] = "s-maxage=1"
     return resp
+
 
 @app.route("/api/play")
 def play():
@@ -159,6 +170,7 @@ def play():
         data = spotify_request("me/player/recently-played?limit=1")
         id = data["items"][0]["track"]["id"]
     return redirect(f"https://open.spotify.com/track/{id}")
+
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -4,6 +4,12 @@ A small widget that displays the currently playing song and top tracks on Spotif
 
 This is a fork of [ntthn0/Spotify-Readme](https://github.com/tthn0/Spotify-Readme). The original `README.md` is kept [here](./README-original.md) on the side, but the instructions and previews are also below.
 
+## Features
+
+- Shows the currently playing song on Spotify.
+- If nothing is playing, shows a randomly chosen track from the recently played 10 tracks of the user.
+- Multiple customization options, as shown in the previews below.
+
 ## Previews
 
 #### Default
@@ -38,6 +44,8 @@ This is a fork of [ntthn0/Spotify-Readme](https://github.com/tthn0/Spotify-Readm
 
 ## Setup/Deployment
 
+:warning: The instructions below are different from the ones in the original [`README.md`](https://github.com/tthn0/Spotify-Readme/blob/1dd070c3a0e1bc027f230e3653120b5e69dc56f2/README.md).
+
 This will take approximately 5 minutes.
 
 > [!NOTE]  
@@ -54,7 +62,7 @@ This will take approximately 5 minutes.
   * Verify your email address if you haven't done so already.
   * Click on the **Create app** button.
     * In the **App name** & **App description** fields, you may put whatever you want.
-    * In the **Redirect URI** field, add `http://localhost/callback/`.
+    * In the **Redirect URI** field, add `https://localhost:3000/callback`.
     * Agree with Spotify's TOS and click **Save**.
   * Click on the **Settings** button.
   * Take note of the **Client ID** & **Client Secret**.
@@ -62,19 +70,19 @@ This will take approximately 5 minutes.
 #### 2. Intermediary Steps 🛠️
 
 ```
-https://accounts.spotify.com/authorize?client_id={CLIENT_ID}&response_type=code&scope=user-read-currently-playing,user-read-recently-played&redirect_uri=http://localhost/callback/
+https://accounts.spotify.com/authorize?client_id={CLIENT_ID}&response_type=code&scope=user-read-currently-playing,user-read-recently-played,user-top-read&redirect_uri=https://localhost:3000/callback
 ```
 
 * Copy and paste the above link into your browser.
   * Replace `{CLIENT_ID}` with the **Client ID** you got from your Spotify application.
-  * Vist the URL.
+  * Visit the URL.
     * Log in if you're not already signed in.
     * Click **Agree**.
-* After you get redirected to a blank page, retrieve the URL from your browser's URL bar. It should be in the following format: `http://localhost/callback/?code={CODE}`.
+* After you get redirected to a blank page, retrieve the URL from your browser's URL bar. It should be in the following format: `http://localhost:3000/callback?code={CODE}`.
   * Take note of the `{CODE}` portion of the URL.
-* Head over to <a href="https://base64.io">base64.io</a>.
+* Head over to <a href="https://base64.io">base64.io</a> or use the command `echo -n "{CLIENT_ID}:{CLIENT_SECRET}`.
   * Create a string in the form of `{CLIENT_ID}:{CLIENT_SECRET}` and encode it to base 64.
-  * Take note of the encoded Base64 string. We'll call this `{BASE_64}`.
+  * Take note of the encoded base 64 string. We'll call this `{BASE_64}`.
 * If you're on Windows or don't have the `curl` command, head over to <a href="https://httpie.io/cli/run">httpie.io/cli/run</a>.
   * Press enter.
   * Clear the pre-filled command.
@@ -86,7 +94,7 @@ https://accounts.spotify.com/authorize?client_id={CLIENT_ID}&response_type=code&
     -X POST \
     -H "Content-Type: application/x-www-form-urlencoded" \
     -H "Authorization: Basic {BASE_64}" \
-    -d "grant_type=authorization_code&redirect_uri=http://localhost/callback/&code={CODE}" \
+    -d "grant_type=authorization_code&redirect_uri=https://localhost:3000/callback&code={CODE}" \
     https://accounts.spotify.com/api/token
   ```
 
