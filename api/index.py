@@ -103,10 +103,10 @@ def make_svg(spin, scan, theme, rainbow, top, random):
     if data:
         item = data["item"]
     elif top and top != "false" and top != "0":
-        data = spotify_request("me/top/tracks?limit=10&time_range=medium_term")
+        data = spotify_request("me/top/tracks?limit=%s&time_range=medium_term" % n)
         item = data["items"][n]
     else:
-        data = spotify_request("me/player/recently-played?limit=10")
+        data = spotify_request("me/player/recently-played?limit=%s" % n)
         item = data["items"][n]["track"]
 
     if item["album"]["images"] == []:
