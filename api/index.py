@@ -96,11 +96,11 @@ def get_scan_code(spotify_uri):
 def make_svg(spin, scan, theme, rainbow):
     """Render the HTML template with variables"""
     data = spotify_request("me/player/currently-playing")
-    if data and data != "EMPTY_RESPONSE":
+    if data:
         item = data["item"]
     else:
-        item = spotify_request(
-            "me/player/recently-played?limit=1")["items"][0]["track"]
+        data = spotify_request("me/player/recently-played?limit=1")
+        item = data["items"][0]["track"]
 
     if item["album"]["images"] == []:
         image = B64_PLACEHOLDER_IMAGE
@@ -156,8 +156,8 @@ def play():
     if data:
         id = data["item"]["id"]
     else:
-        id = spotify_request(
-            "me/player/recently-played?limit=1")["items"][0]["track"]["id"]
+        data = spotify_request("me/player/recently-played?limit=1")
+        id = data["items"][0]["track"]["id"]
     return redirect(f"https://open.spotify.com/track/{id}")
 
 if __name__ == "__main__":
