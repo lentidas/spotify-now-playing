@@ -5,8 +5,8 @@
             "dest": "api/index.py"
         },
         {
-            "src": "/(.*)",
-            "dest": "index.html"
+            "src": "/",
+            "dest": "api/index.py"
         }
     ]
 }
