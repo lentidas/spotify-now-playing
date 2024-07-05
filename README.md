@@ -146,6 +146,8 @@ https://accounts.spotify.com/authorize?client_id={CLIENT_ID}&response_type=code&
 | `scan`    | `false` | `false`, `true` |
 | `theme`   | `light` | `light`, `dark` |
 | `rainbow` | `false` | `false`, `true` |
+| `top`     | `false` | `false`, `true` |
+| `random`  | `false` | `false`, `true` |
 
 ## Keep Your Fork Up To Date
 
