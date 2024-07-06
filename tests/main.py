@@ -34,12 +34,18 @@ def main():
     if data:
         item = data["item"]
     else:
-        n = randrange(10)
-        print(spotify_request("me/player/recently-played?limit=10")["items"][n]["track"])
+        n_max = 20
+        n = randrange(n_max)
+        # print(spotify_request("me/player/recently-played?limit=%s" % n_max)["items"][n]["track"])
+        items_recent = spotify_request("me/player/recently-played?limit=%s" % n_max)["items"]
+        print(len(items_recent))
+        print(n)
         print("/n")
         print("/n")
-        n = randrange(50)
-        print(spotify_request("me/top/tracks?limit=50&time_range=medium_term")["items"][n])
+        # print(spotify_request("me/top/tracks?limit=%s&time_range=medium_term" % n_max)["items"][n])
+        items_top = spotify_request("me/top/tracks?limit=%s&time_range=medium_term" % n_max)["items"]
+        print(len(items_top))
+        print(n)
 
 if __name__ == "__main__":
     main()

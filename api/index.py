@@ -97,16 +97,17 @@ def get_scan_code(spotify_uri):
 
 def make_svg(spin, scan, theme, rainbow, top, random):
     """Render the HTML template with variables"""
-    n = randrange(25) if random and random != "false" and random != "0" else 0
+    n_max = 25
+    n = randrange(n_max) if random and random != "false" and random != "0" else 0
     data = spotify_request("me/player/currently-playing")
 
     if data:
         item = data["item"]
     elif top and top != "false" and top != "0":
-        data = spotify_request("me/top/tracks?limit=%s&time_range=medium_term" % n)
+        data = spotify_request("me/top/tracks?limit=%s&time_range=medium_term" % n_max)
         item = data["items"][n]
     else:
-        data = spotify_request("me/player/recently-played?limit=%s" % n)
+        data = spotify_request("me/player/recently-played?limit=%s" % n_max)
         item = data["items"][n]["track"]
 
     if item["album"]["images"] == []:
